@@ -34,9 +34,13 @@
 const apiKey = '76eadb2026ba063f05c4134c2beed833';
 const UrlWeather = 'https://api.openweathermap.org/data/2.5/weather';
 
+function GetForecastClick(){
+    let city = document.getElementById("cityInput");
+    getWeatherData(city.value)
+}
+
 // Function to fetch weather data
 async function getWeatherData(city) {
-    city = "paris";
     try {
         const apiUrl = `${UrlWeather}?q=${city}&appid=${apiKey}`;
         console.log(apiUrl);
@@ -49,8 +53,6 @@ async function getWeatherData(city) {
     }
 }
 
-getWeatherData("paris");
-
 // Function to display weather data
 function displayWeatherData(data) {
     const weatherDataDiv = document.getElementById('weather-data');
@@ -61,7 +63,7 @@ function displayWeatherData(data) {
 
     const content = `
         <p>City: ${cityName}</p>
-        <p>Temperature: ${temperature}°C</p>
+        <p>Temperature: ${Math.floor( temperature-273 )}°C</p>
         <p>Weather: ${weatherDescription}</p>
     `;
 
