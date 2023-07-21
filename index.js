@@ -1,18 +1,20 @@
 
 // const baseUrl = 'https://api.openweathermap.org/data/3.0/weather';
 // e38d70a74e234ed2936a0b2b22d0c72e
+
+//https://api.openweathermap.org/data/2.5/weather
 // https://api.opencagedata.com/geocode/v1/json?q=URI-ENCODED-PLACENAME&key=YOUR-API-KEY
 //https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
 
-const apiKeyLatlng = 'e38d70a74e234ed2936a0b2b22d0c72e';
-const baseUrlLatlng = 'https://api.opencagedata.com/geocode/v1/json?'
+// const apiKeyLatlng = 'e38d70a74e234ed2936a0b2b22d0c72e';
+// const baseUrlLatlng = 'https://api.opencagedata.com/geocode/v1/json?'
 
-const apiKeyWeather = '76eadb2026ba063f05c4134c2beed833';
-const UrlWeather = 'https://api.openweathermap.org/data/3.0/onecall?';
-
-// Function to fetch weather data
-
-async function getLatLong(city){
+ /*
+    let latlong = await getLatLong(city);
+    let lat = latlong.lat;
+    let long = latlong.lng;
+    */
+   /*async function getLatLong(city){
     city = "paris";
     try {
         const apiUrl = `${baseUrlLatlng}q=${city}&key=${apiKeyLatlng}`;
@@ -25,14 +27,18 @@ async function getLatLong(city){
         console.error('Error fetching lat long data:', error);
     }
 }
+*/
 
+
+
+const apiKey = '76eadb2026ba063f05c4134c2beed833';
+const UrlWeather = 'https://api.openweathermap.org/data/2.5/weather';
+
+// Function to fetch weather data
 async function getWeatherData(city) {
-    let latlong = await getLatLong(city);
-    let lat = latlong.lat;
-    let long = latlong.lng;
     city = "paris";
     try {
-        const apiUrl = `${UrlWeather}lat=${lat}&lon=${long}&exclude=alerts&appid=${apiKeyWeather}`;
+        const apiUrl = `${UrlWeather}?q=${city}&appid=${apiKey}`;
         console.log(apiUrl);
         const response = await fetch(apiUrl);
         const data = await response.json();
@@ -41,8 +47,6 @@ async function getWeatherData(city) {
     } catch (error) {
         console.error('Error fetching lat long data:', error);
     }
-
-    
 }
 
 getWeatherData("paris");
