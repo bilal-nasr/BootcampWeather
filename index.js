@@ -43,7 +43,7 @@ async function getWeatherData(city) {
         const response = await fetch(apiUrl);
         const data = await response.json();
         console.log(data);
-        return data
+        displayWeatherData(data)
     } catch (error) {
         console.error('Error fetching lat long data:', error);
     }
